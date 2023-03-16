@@ -3,6 +3,10 @@ from .models import Article, Comment
 
 # Register your models here.
 
+class CommentInline(admin.TabularInline):
+    model = Comment
+    extra = 0
+
 class ArticleAdmin(admin.ModelAdmin):
     list_display = [
         "title",
@@ -11,6 +15,7 @@ class ArticleAdmin(admin.ModelAdmin):
         "body"
     ]
     list_filter = ("author", "date",)
+    inlines = [CommentInline,]
 
 
 class CommentAdmin(admin.ModelAdmin):
